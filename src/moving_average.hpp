@@ -28,7 +28,8 @@ std::vector<T> moving_average(const std::vector<T>& data, size_t window_sz)
 
     // В силу линейности среднего:
     for (int i = 1; i <= data.size()-window_sz; ++i) {
-        T next_mean = result.back() + (data[i+window_sz-1] - data[i-1])/window_sz;
+        T prev_mean = result.back();
+        T next_mean = prev_mean + (data[i+window_sz-1] - data[i-1])/window_sz;
         result.push_back(next_mean);
     }
 
